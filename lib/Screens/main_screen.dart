@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'authors_screen.dart';
-import 'books_screen.dart';
-import 'settings_screen.dart';
+import 'authors_screen/authors_screen.dart';
+import 'book_screen/books_screen.dart';
+import 'settings_screen/settings_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
