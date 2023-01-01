@@ -30,7 +30,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onTap: () {
               areYouSure(
                 context,
-                title: 'Sign out',
+                title: 'Are you sure you want to sign out?',
                 function: () => Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(

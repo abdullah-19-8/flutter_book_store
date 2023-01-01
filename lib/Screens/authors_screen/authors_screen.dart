@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../data/book_data.dart';
+import '../../model/book_data.dart';
 
 class AuthorsScreen extends StatefulWidget {
   const AuthorsScreen({super.key});

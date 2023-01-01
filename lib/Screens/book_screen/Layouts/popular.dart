@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:practical_assignment/helper/dummy_data.dart';
 
-import '../../../data/book_data.dart';
+import '../../../model/book_data.dart';
 
 class PopularBooks extends StatefulWidget {
   const PopularBooks({
     Key? key,
+
   }) : super(key: key);
 
   @override
@@ -12,36 +14,16 @@ class PopularBooks extends StatefulWidget {
 }
 
 class _PopularBooksState extends State<PopularBooks> {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 't6',
-      title: 'Flutter for Dummies',
-      authorName: 'Rafael Barboza',
-    ),
-    Transaction(
-      id: 't7',
-      title: 'Flutter for Dummies',
-      authorName: 'Rafael Barboza',
-    ),
-    Transaction(
-      id: 't8',
-      title: 'Flutter for Dummies',
-      authorName: 'Rafael Barboza',
-    ),
-    Transaction(
-      id: 't9',
-      title: 'Flutter kickstart',
-      authorName: 'Rafael Barboza',
-    ),
-    Transaction(
-      id: 't10',
-      title: 'Flutter y Firebase',
-      authorName: 'Rafael Barboza',
-    ),
-  ];
+  List<Transaction> categorize() {
+    var popularBooks = transactions
+        .where((element) => element.category == 'Popular')
+        .toList();
+    return popularBooks;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final List<Transaction> transactions = categorize();
     return ListView(
       children: transactions.map((tx) {
         return Padding(

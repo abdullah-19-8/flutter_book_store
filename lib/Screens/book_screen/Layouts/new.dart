@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:practical_assignment/helper/dummy_data.dart';
 
-import '../../../data/book_data.dart';
+import '../../../model/book_data.dart';
 
 class NewBooks extends StatefulWidget {
   const NewBooks({super.key});
@@ -10,31 +11,15 @@ class NewBooks extends StatefulWidget {
 }
 
 class _NewBooksState extends State<NewBooks> {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 't1',
-      title: 'Beginning app development with Flutter',
-      authorName: 'Rap Payne',
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Flutter Complete Reference',
-      authorName: 'Alberto Miola',
-    ),
-    Transaction(
-      id: 't3',
-      title: 'Flutter in Action',
-      authorName: 'Kasper Lund',
-    ),
-    Transaction(
-      id: 't4',
-      title: 'Flutter Cookbook',
-      authorName: 'Rafael Barboza',
-    ),
-  ];
+  List<Transaction> categorize() {
+    var newBooks =
+        transactions.where((element) => element.category == 'New').toList();
+    return newBooks;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final List<Transaction> transactions = categorize();
     return ListView(
       children: transactions.map((tx) {
         return Padding(

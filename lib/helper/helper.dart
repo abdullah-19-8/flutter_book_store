@@ -30,7 +30,7 @@ areYouSure(context,
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    function!();
+                    function != null ? function() : null;
                   },
                   child: const Text(
                     'Ok',
