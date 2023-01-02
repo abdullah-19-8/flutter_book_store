@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../model/book_data.dart';
+import '../../helper/dummy_data.dart';
 
 class AuthorsScreen extends StatefulWidget {
   const AuthorsScreen({super.key});
@@ -10,40 +10,26 @@ class AuthorsScreen extends StatefulWidget {
 }
 
 class _AuthorsScreenState extends State<AuthorsScreen> {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 't1',
-      title: 'Beginning app development with Flutter',
-      authorName: 'Rap Payne',
-      books: 3,
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Flutter Complete Reference',
-      authorName: 'Alberto Miola',
-      books: 2,
-    ),
-    Transaction(
-      id: 't3',
-      title: 'Flutter in Action',
-      authorName: 'Kasper Lund',
-      books: 1,
-    ),
-    Transaction(
-      id: 't10',
-      title: 'Flutter y Firebase',
-      authorName: 'Rafael Barboza',
-      books: 1,
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
+    int count = 0;
+    List names = []; // List();
+    for (var u in transactions) {
+      if (names.contains(u.authorName)) {
+        names.removeWhere((element) => element == u.authorName);
+        count++;
+      } else {
+        names.add(u.authorName);
+      }
+    }
+    print(names);
+    // count = names.length;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Authors'),
       ),
       body: ListView(
-        children: transactions.map((tx) {
+        children: names.map((tx) {
           return Padding(
             padding: const EdgeInsets.all(12.0),
             child: Row(
@@ -52,14 +38,14 @@ class _AuthorsScreenState extends State<AuthorsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      tx.authorName!,
+                      tx,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '${tx.books} books',
+                      '$count books',
                       style: const TextStyle(
                         color: Colors.grey,
                       ),
