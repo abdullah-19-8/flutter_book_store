@@ -21,16 +21,15 @@ class _AuthorsScreenState extends State<AuthorsScreen> {
       } else {
         names.add(u.authorName);
       }
+      
     }
-    print(names);
-    // count = names.length;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Authors'),
       ),
       body: ListView(
-        children: names.map((tx) {
-          return Padding(
+        children: names.map((tx) =>
+           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Row(
               children: <Widget>[
@@ -54,8 +53,8 @@ class _AuthorsScreenState extends State<AuthorsScreen> {
                 ),
               ],
             ),
-          );
-        }).toList(),
+          ),
+        ).toList(),
       ),
     );
   }

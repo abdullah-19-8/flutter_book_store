@@ -11,18 +11,15 @@ class NewBooks extends StatefulWidget {
 }
 
 class _NewBooksState extends State<NewBooks> {
-  List<Transaction> categorize() {
-    var newBooks =
-        transactions.where((element) => element.category == 'New').toList();
-    return newBooks;
-  }
+  List<Transaction> categorize() =>
+      transactions.where((element) => element.category == 'New').toList();
 
   @override
   Widget build(BuildContext context) {
     final List<Transaction> transactions = categorize();
     return ListView(
-      children: transactions.map((tx) {
-        return Padding(
+      children: transactions.map((tx) =>
+        Padding(
           padding: const EdgeInsets.all(12.0),
           child: Row(
             children: <Widget>[
@@ -46,8 +43,8 @@ class _NewBooksState extends State<NewBooks> {
               ),
             ],
           ),
-        );
-      }).toList(),
+        ),
+      ).toList(),
     );
   }
 }

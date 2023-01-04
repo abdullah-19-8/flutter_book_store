@@ -13,37 +13,35 @@ class BooksScreen extends StatefulWidget {
 
 class _BooksScreenState extends State<BooksScreen> {
   @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Books'),
-          bottom: const TabBar(
-            tabs: [
-              Tab(
-                icon: Icon(Icons.people_alt_rounded),
-                text: 'Popular',
-              ),
-              Tab(
-                icon: Icon(Icons.new_releases),
-                text: 'New',
-              ),
-              Tab(
-                icon: Icon(Icons.list),
-                text: 'All',
-              ),
+  Widget build(BuildContext context) => DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Books'),
+            bottom: const TabBar(
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.people_alt_rounded),
+                  text: 'Popular',
+                ),
+                Tab(
+                  icon: Icon(Icons.new_releases),
+                  text: 'New',
+                ),
+                Tab(
+                  icon: Icon(Icons.list),
+                  text: 'All',
+                ),
+              ],
+            ),
+          ),
+          body: const TabBarView(
+            children: [
+              PopularBooks(),
+              NewBooks(),
+              AllBooks(),
             ],
           ),
         ),
-        body: const TabBarView(
-          children: [
-            PopularBooks(),
-            NewBooks(),
-            AllBooks(),
-          ],
-        ),
-      ),
-    );
-  }
+      );
 }

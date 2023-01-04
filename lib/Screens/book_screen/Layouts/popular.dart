@@ -6,7 +6,6 @@ import '../../../model/book_data.dart';
 class PopularBooks extends StatefulWidget {
   const PopularBooks({
     Key? key,
-
   }) : super(key: key);
 
   @override
@@ -14,44 +13,42 @@ class PopularBooks extends StatefulWidget {
 }
 
 class _PopularBooksState extends State<PopularBooks> {
-  List<Transaction> categorize() {
-    var popularBooks = transactions
-        .where((element) => element.category == 'Popular')
-        .toList();
-    return popularBooks;
-  }
+  List<Transaction> categorize() =>
+      transactions.where((element) => element.category == 'Popular').toList();
 
   @override
   Widget build(BuildContext context) {
     final List<Transaction> transactions = categorize();
     return ListView(
-      children: transactions.map((tx) {
-        return Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      children: transactions
+          .map(
+            (tx) => Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Row(
                 children: <Widget>[
-                  Text(
-                    tx.title!,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    tx.authorName!,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        tx.title!,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        tx.authorName!,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        );
-      }).toList(),
+            ),
+          )
+          .toList(),
     );
   }
 }
