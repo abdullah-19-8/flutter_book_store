@@ -14,20 +14,9 @@ class _SignInScreenState extends State<SignInScreen> {
   bool autoValidate = false;
   bool obscured = true;
 
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    usernameController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(240, 255, 255, 255),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -61,7 +50,6 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      controller: usernameController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "Username",
@@ -78,16 +66,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
-                      controller: passwordController,
                       decoration: InputDecoration(
                         border: const OutlineInputBorder(),
                         labelText: "Password",
                         suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscured = !obscured;
-                            });
-                          },
+                          onPressed: () => setState(
+                            () => obscured = !obscured,
+                          ),
                           icon: obscured
                               ? const Icon(
                                   Icons.visibility_off,
@@ -99,12 +84,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                 ),
                         ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
+                      validator: (value) => value == null || value.isEmpty
+                          ? 'Please enter some text'
+                          : null,
                       autovalidateMode: autoValidate == true
                           ? AutovalidateMode.always
                           : AutovalidateMode.disabled,
@@ -112,21 +94,17 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     const SizedBox(height: 30),
                     ElevatedButton(
-                      onPressed: () {
-                        if (_fomKey.currentState!.validate()) {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const MyHomePage(),
+                      onPressed: () => _fomKey.currentState!.validate()
+                          ? Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MyHomePage(),
+                              ),
+                              (route) => false,
+                            )
+                          : setState(
+                              () => autoValidate = true,
                             ),
-                            (route) => false,
-                          );
-                        } else {
-                          setState(() {
-                            autoValidate = true;
-                          });
-                        }
-                      },
                       child: const Text(
                         'Sign in',
                         style: TextStyle(fontSize: 14),

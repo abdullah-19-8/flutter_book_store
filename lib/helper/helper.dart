@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-areYouSure(context,
-    {Function? function,
-    required String title,
-    bool? isOrder = false,
-    bool haveButtonCancel = true,
-    Widget? content,
-    bool mandatory = false}) async {
+areYouSure(
+  context, {
+  Function? function,
+  required String title,
+  bool? isOrder = false,
+  bool haveButtonCancel = true,
+  Widget? content,
+  bool mandatory = false,
+}) async {
   if (true) {
     showDialog(
         context: context,

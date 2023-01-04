@@ -24,7 +24,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: _screens[selectedIndex],
       bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
         child: SizedBox(
           height: 56,
           width: MediaQuery.of(context).size.width,
@@ -34,32 +33,29 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconBottomBar(
-                    text: "Books",
-                    icon: Icons.book,
-                    selected: selectedIndex == 0 ? true : false,
-                    onPressed: () {
-                      setState(() {
-                        selectedIndex = 0;
-                      });
-                    }),
+                  text: "Books",
+                  icon: Icons.book,
+                  selected: selectedIndex == 0 ? true : false,
+                  onPressed: () => setState(
+                    () => selectedIndex = 0,
+                  ),
+                ),
                 IconBottomBar(
-                    text: "Authors",
-                    icon: Icons.person,
-                    selected: selectedIndex == 1 ? true : false,
-                    onPressed: () {
-                      setState(() {
-                        selectedIndex = 1;
-                      });
-                    }),
+                  text: "Authors",
+                  icon: Icons.person,
+                  selected: selectedIndex == 1 ? true : false,
+                  onPressed: () => setState(
+                    () => selectedIndex = 1,
+                  ),
+                ),
                 IconBottomBar(
-                    text: "Settings",
-                    icon: Icons.settings,
-                    selected: selectedIndex == 2 ? true : false,
-                    onPressed: () {
-                      setState(() {
-                        selectedIndex = 2;
-                      });
-                    })
+                  text: "Settings",
+                  icon: Icons.settings,
+                  selected: selectedIndex == 2 ? true : false,
+                  onPressed: () => setState(
+                    () => selectedIndex = 2,
+                  ),
+                )
               ],
             ),
           ),
@@ -70,13 +66,13 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class IconBottomBar extends StatelessWidget {
-  const IconBottomBar(
-      {Key? key,
-      required this.text,
-      required this.icon,
-      required this.selected,
-      required this.onPressed})
-      : super(key: key);
+  const IconBottomBar({
+    Key? key,
+    required this.text,
+    required this.icon,
+    required this.selected,
+    required this.onPressed,
+  }) : super(key: key);
   final String text;
   final IconData icon;
   final bool selected;
@@ -98,9 +94,10 @@ class IconBottomBar extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-              fontSize: 12,
-              height: .1,
-              color: selected ? Colors.blue : Colors.grey.withOpacity(.75)),
+            fontSize: 12,
+            height: .1,
+            color: selected ? Colors.blue : Colors.grey.withOpacity(.75),
+          ),
         )
       ],
     );

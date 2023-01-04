@@ -21,25 +21,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SettingCard(
-              title: 'pop alert',
-              onTap: () {
-                areYouSure(context, title: 'Alert');
-              }),
+            title: 'pop alert',
+            onTap: () => areYouSure(context, title: 'Alert'),
+          ),
           SettingCard(
             title: 'Sign out',
-            onTap: () {
-              areYouSure(
+            onTap: () => areYouSure(
+              context,
+              title: 'Are you sure you want to sign out?',
+              function: () => Navigator.pushAndRemoveUntil(
                 context,
-                title: 'Are you sure you want to sign out?',
-                function: () => Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const SignInScreen(),
-                  ),
-                  (route) => false,
+                MaterialPageRoute(
+                  builder: (_) => const SignInScreen(),
                 ),
-              );
-            },
+                (route) => false,
+              ),
+            ),
           ),
         ],
       ),
